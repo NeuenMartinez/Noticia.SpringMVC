@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,19 +25,21 @@ public class NoticiaControlador {
     
     @GetMapping("/Formulario")
     public String formulario(){
-        return "formulario.html";
+        return "Formulario.html";
     } 
     
     @PostMapping("/envioFormulario")
-    public String envioFormulario(@RequestParam String titulo, String cuerpo){
+    public String envioFormulario(@RequestParam(required = false) String titulo, @RequestParam(required = false) String cuerpo, ModelMap modelo){
         
         try {
             noticiaServicio.crearNoticia(titulo, cuerpo);
-            return "formulario.html";
+            modelo.put("exito","La noticia fue cargada correctamente!");
         } catch (MyException ex) {
             Logger.getLogger(NoticiaControlador.class.getName()).log(Level.SEVERE, null, ex);
-            return "formulario.html";
+            modelo.put("error", ex.getMessage());
+            return "Formulario.html";
         }
+        return "index.html";
     }
 
 }
