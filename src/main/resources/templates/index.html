@@ -50,6 +50,13 @@
     </div>
 </div>
 
+<div class="notice_box">
+  <div th:each="noticia : ${noticias}" class="notice_container">
+    <h3 th:text="${noticia.titulo}"></h3>
+    <p th:text="${noticia.alta}"></p>
+  </div>
+</div>
+
 <script>
     const toggle_btn = document.querySelector(".toggle_btn");
     const toggle_btnIcon = document.querySelector(".toggle_btn i");
