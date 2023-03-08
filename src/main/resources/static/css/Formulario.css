@@ -252,6 +252,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   outline: none;
   border-radius: 30px;
   color: #fff;

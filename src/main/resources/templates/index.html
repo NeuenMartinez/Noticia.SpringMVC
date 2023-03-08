@@ -1,61 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="/css/index.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <header>
-        <div class="navbar">
-          <div class="logo"><a href="#">Portal Noticias</a></div>
-          <ul class="links">
-            <li><a href="home">Inicio</a></li>
-            <li><a href="modificarnoticia">Modificar Noticia</a></li>
-            <li><a href="eliminarnoticia">Eliminar Noticia</a></li>
-          </ul>
-          <a href="#" class="action_btn">Crear Noticia</a>
-          <div class="toggle_btn">
-            <i class="fa-solid fa-bars"></i>
-          </div>
-        </div>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+            />
+        <link rel="stylesheet" href="/css/index.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <header>
+            <div class="navbar">
+                <div class="logo"><a href="#">Portal Noticias</a></div>
+                <ul class="links">
+                    <li><a href="home">Inicio</a></li>
+                    <li><a href="modificarnoticia">Modificar Noticia</a></li>
+                    <li><a href="eliminarnoticia">Eliminar Noticia</a></li>
+                </ul>
+                <a href="#" class="action_btn">Crear Noticia</a>
+                <div class="toggle_btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
 
-        <div class="dropdown_menu">
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Modificar</a></li>
-          <li><a href="#">Eliminar</a></li>
-          <li><a href="#" class="action_btn">Crear Noticia</a></li>
-        </div>
-    </header>
+            <div class="dropdown_menu">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Modificar</a></li>
+                <li><a href="#">Eliminar</a></li>
+                <li><a href="#" class="action_btn">Crear Noticia</a></li>
+            </div>
+        </header>
 
     <head>
-      <div class="maintitle">
+    <div class="maintitle">
         <h1>Bienvenidos al portal de Noticias</h1>
-      </div>
-    </head>
+    </div>
+</head>
 
-    <script>
-      const toggle_btn = document.querySelector(".toggle_btn");
-      const toggle_btnIcon = document.querySelector(".toggle_btn i");
-      const dropDownMenu = document.querySelector(".dropdown_menu");
+<div th:if="${exito != null}" class="msgexito">
+    <div class="card_body1">
+        <h2 class="card_title">EXITO!</h2>
+        <p class="card_text" th:text="${exito}"></p>
+    </div>
+</div>
 
-      toggle_btn.onclick = function () {
-        dropDownMenu.classList.toggle("open");
-        const isOpen = dropDownMenu.classList.contains("open");
+<script>
+    const toggle_btn = document.querySelector(".toggle_btn");
+    const toggle_btnIcon = document.querySelector(".toggle_btn i");
+    const dropDownMenu = document.querySelector(".dropdown_menu");
 
-        toggle_btnIcon.classList = isOpen
-          ? "fa-solid fa-xmark"
-          : "fa-solid fa-bars";
-      };
-    </script>
-  </body>
+    toggle_btn.onclick = function () {
+    dropDownMenu.classList.toggle("open");
+    const isOpen = dropDownMenu.classList.contains("open");
+
+    toggle_btnIcon.classList = isOpen
+    ? "fa-solid fa-xmark"
+    : "fa-solid fa-bars";
+    };
+</script>
+</body>
 </html>
