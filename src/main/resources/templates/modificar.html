@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+            />
+        <link rel="stylesheet" href="/css/Formulario.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <header>
+            <div class="navbar">
+                <div class="logo"><a href="#">Portal Noticias</a></div>
+                <ul class="links">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="modificarnoticia">Modificar Noticia</a></li>
+                    <li><a href="eliminarnoticia">Eliminar Noticia</a></li>
+                </ul>
+                <a href="#" class="action_btn">Crear Noticia</a>
+                <div class="toggle_btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+
+            <div class="dropdown_menu">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Modificar</a></li>
+                <li><a href="#">Eliminar</a></li>
+                <li><a href="#" class="action_btn">Crear Noticia</a></li>
+            </div>
+        </header>
+
+        <div class="centrado">
+            <head>
+            <div class="maintitle">
+                <h1>Formulario para la creacion de la Noticia</h1>
+            </div>
+        </head>
+
+        <div class="box">
+            <form th:action="@{/noticia/modificar/__${id}__}" method="POST">
+                <input hidden th:value="${id}" name="id"> 
+                <div class="container">
+                    <input
+                        th:value="${noticia.titulo}"
+                        type="text"
+                        class="input_titulo"
+                        name="titulo"
+                        id="exampleFormControlInput1"
+                        placeholder="titulo de la noticia"
+                        />
+                    <textarea
+                        th:value="${noticia.cuerpo}"
+                        class="input_cuerpo"
+                        name="cuerpo"
+                        id="exampleFormControlTextarea1"
+                        placeholder="Cuerpo de la noticia"
+                        rows="3"
+                        ></textarea>
+                    <div class="boton">
+                        <button type="submit" class="submit">Subir</button>
+                    </div>
+                </div>
+        </div>
+    </form>
+</div>
+<div th:if="${error != null}" class="msgerror">
+    <div class="card_body">
+        <h2 class="card_title">ERROR!</h2>
+        <p class="card_text" th:text="${error}"></p>
+    </div>
+</div>
+<script>
+    const toggle_btn = document.querySelector(".toggle_btn");
+    const toggle_btnIcon = document.querySelector(".toggle_btn i");
+    const dropDownMenu = document.querySelector(".dropdown_menu");
+
+    toggle_btn.onclick = function () {
+    dropDownMenu.classList.toggle("open");
+    const isOpen = dropDownMenu.classList.contains("open");
+
+    toggle_btnIcon.classList = isOpen
+    ? "fa-solid fa-xmark"
+    : "fa-solid fa-bars";
+    };
+</script>
+</body>
+</html>

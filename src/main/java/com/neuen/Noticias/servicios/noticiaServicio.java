@@ -72,4 +72,8 @@ public class noticiaServicio {
         noticia = noticiaRepositorio.findAllByOrderByDateAsc();
         return noticia;
     }
+    
+    public noticia getOne(String id){
+        return noticiaRepositorio.getOne(id);
+    }
 }
