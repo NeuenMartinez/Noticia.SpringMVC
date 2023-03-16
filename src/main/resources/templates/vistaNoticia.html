@@ -11,14 +11,14 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
-        <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/vistaNoticia.css" />
         <title>Document</title>
     <header>
             <div class="navbar">
-                <div class="logo"><a th:href="@{/}">Portal Noticias</a></div>
+                <div class="logo"><a th:href="@{/inicioUser}">Portal Noticias</a></div>
                 <ul class="links">
-                    <li><a th:href="@{/login}">Login</a></li>
-                <li><a th:href="@{/registrar}">Registrarse</a></li>
+                    <li><a th:href="@{/inicioUser}">Inicio</a></li>
+                    <li><a th:href="@{/logout}">Logout</a></li>
                 </ul>
                 <div class="toggle_btn">
                     <i class="fa-solid fa-bars"></i>
@@ -26,30 +26,19 @@
             </div>
 
             <div class="dropdown_menu">
-                <li><a th:href="@{/login}">Login</a></li>
-                <li><a th:href="@{/registrar}">Registrarse</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
             </div>
         </header>
 
     <head>
     <div class="maintitle">
-        <h1>Bienvenidos al portal de Noticias</h1>
+        <h1 th:text="${noticia.titulo}"></h1>
+    </div>
+    <div class="maintext">
+        <h1 th:text="${noticia.cuerpo}"></h1>
     </div>
 </head>
 
-<div th:if="${exito != null}" class="msgexito">
-    <div class="card_body1">
-        <h2 class="card_title">EXITO!</h2>
-        <p class="card_text" th:text="${exito}"></p>
-    </div>
-</div>
-
-<div class="notice_box">
-  <div th:each="noticia : ${noticias}" class="notice_container">
-    <h3 th:text="${noticia.titulo}"></h3>
-    <p th:text="${noticia.alta}"></p>
-  </div>
-</div>
 
 <script>
     const toggle_btn = document.querySelector(".toggle_btn");

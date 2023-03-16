@@ -17,23 +17,23 @@
     <body>
         <header>
             <div class="navbar">
-                <div class="logo"><a href="#">Portal Noticias</a></div>
+                <div class="logo"><a th:href="@{/}">Portal Noticias</a></div>
                 <ul class="links">
-                    <li><a href="home">Inicio</a></li>
-                    <li><a href="modificarnoticia">Modificar Noticia</a></li>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/noticia/tabla}">Modificar Noticia</a></li>
                     <li><a href="eliminarnoticia">Eliminar Noticia</a></li>
                 </ul>
-                <a href="#" class="action_btn">Crear Noticia</a>
+                <a th:href="@{/noticia/Formulario}" class="action_btn">Crear Noticia</a>
                 <div class="toggle_btn">
                     <i class="fa-solid fa-bars"></i>
                 </div>
             </div>
 
             <div class="dropdown_menu">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/noticia/tabla}">Modificar</a></li>
                 <li><a href="#">Eliminar</a></li>
-                <li><a href="#" class="action_btn">Crear Noticia</a></li>
+                <li><a th:href="@{/noticia/Formulario}" class="action_btn">Crear Noticia</a></li>
             </div>
         </header>
 

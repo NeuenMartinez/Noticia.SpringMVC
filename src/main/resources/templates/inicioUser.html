@@ -11,14 +11,13 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
-        <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/inicioUser.css" />
         <title>Document</title>
     <header>
             <div class="navbar">
                 <div class="logo"><a th:href="@{/}">Portal Noticias</a></div>
                 <ul class="links">
-                    <li><a th:href="@{/login}">Login</a></li>
-                <li><a th:href="@{/registrar}">Registrarse</a></li>
+                    <li><a th:href="@{/logout}">Logout</a></li>
                 </ul>
                 <div class="toggle_btn">
                     <i class="fa-solid fa-bars"></i>
@@ -26,8 +25,7 @@
             </div>
 
             <div class="dropdown_menu">
-                <li><a th:href="@{/login}">Login</a></li>
-                <li><a th:href="@{/registrar}">Registrarse</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
             </div>
         </header>
 
@@ -46,7 +44,7 @@
 
 <div class="notice_box">
   <div th:each="noticia : ${noticias}" class="notice_container">
-    <h3 th:text="${noticia.titulo}"></h3>
+    <h3><a th:text="${noticia.titulo}" th:href="@{/vistaNoticia/__${noticia.id}__}"></a></h3>
     <p th:text="${noticia.alta}"></p>
   </div>
 </div>

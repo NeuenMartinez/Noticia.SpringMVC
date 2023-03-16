@@ -44,6 +44,13 @@ public class usuarioServicio implements UserDetailsService{
     
     private void validar(String nombreUsuario, String password, String password2) throws MyException{
         
+        List<usuario> usuarios = usuarioRepositorio.findAll();
+        for (usuario aux : usuarios) {
+            if (aux.getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
+                throw new MyException("nombre de usuario ocupado");
+            }
+        }
+        
         if (nombreUsuario == null || nombreUsuario.isEmpty()) {
             throw new MyException("El nombre de usuario no puede ser nulo o estar vacio");
         }
