@@ -1,13 +1,15 @@
 package com.neuen.Noticias.controladores;
-
 import com.neuen.Noticias.entidades.noticia;
+import com.neuen.Noticias.entidades.usuario;
 import com.neuen.Noticias.excepciones.MyException;
 import com.neuen.Noticias.servicios.noticiaServicio;
 import com.neuen.Noticias.servicios.usuarioServicio;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,18 +79,16 @@ public class PortalControlador {
         return "index.html";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADMIN')")
     @GetMapping("/inicioUser")
-    public String inicioUser(ModelMap modelo) {
+    public String inicioUser(ModelMap modelo, HttpSession session) {
         List<noticia> noticia = noticiaServicio.ListaNoticiasOrdenadoPorFecha();
         modelo.addAttribute("noticias", noticia);
+        usuario logueado = (usuario) session.getAttribute("usuariosession");
+        if (logueado.getRol().toString().equals("ADMIN")) {
+            return "redirect:/admin/dashboard";
+        }
         return "inicioUser.html";
-    }
-
-    @GetMapping("/inicioAdmin")
-    public String inicioAdmin(ModelMap modelo) {
-        List<noticia> noticia = noticiaServicio.ListaNoticiasOrdenadoPorFecha();
-        modelo.addAttribute("noticias", noticia);
-        return "inicioAdmin.html";
     }
     
     @GetMapping("/vistaNoticia/{id}")
