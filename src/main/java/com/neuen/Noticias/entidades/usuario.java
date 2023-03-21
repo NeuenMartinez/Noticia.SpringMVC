@@ -1,5 +1,4 @@
 package com.neuen.Noticias.entidades;
-
 import com.neuen.Noticias.enumeraciones.rol;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -7,6 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -28,6 +28,8 @@ public class usuario {
     private Date Usuarioalta;
     @Enumerated(EnumType.STRING)
     private rol rol;
+    @OneToOne
+    private imagen imagen;
 
     public usuario() {
     }

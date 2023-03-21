@@ -21,7 +21,7 @@ public class AdminControlador {
     
     @Autowired
     private noticiaServicio noticiaServicio;
-
+    
     @Autowired
     private usuarioServicio usuarioServicio;
     
